@@ -1,0 +1,136 @@
+/* Опишите в этом файле все keyframes для проекта и стили анимаций иконки Like.
+
+Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
+✦ theme-dark — класс тёмной темы
+✦ theme-light — класс светлой темы
+✦ like-icon — для svg-иконки анимированного сердца
+✦ card__like-button — для кнопки Like рядом с иконкой
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
+✦ button__text — для обозначения текстового элемента внутри кнопки
+
+Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
+*/
+
+.card__icon-button {
+  width: 39px;
+  height: 36px;
+}
+
+.card__icon-button {
+  .sparks {
+    opacity: 0;
+  }
+}
+
+.card__icon-button:hover {
+  cursor: pointer;
+
+  .core {
+    transition: fill 0.3s 0.03s linear;
+    fill: var(--accent-color, rgba(0, 0, 0, 1));
+  }
+
+  .main-body {
+    fill: var(--accent-color, rgba(0, 0, 0, 1));
+    transition: fill 0.3s 0.05s linear;
+  }
+}  
+
+.card__icon-button:active {
+  outline: none;
+  border: none;
+
+  .core {
+    fill: var(--color-core, rgba(255, 0, 0, 1));
+    transition: fill 0.3s 0.05s linear;
+  }
+
+  .main-body {
+    fill: var(--color-core, rgba(255, 0, 0, 1));
+    transition: fill 0.3s 0.05s linear;
+    opacity: 1;
+  }
+}
+
+.like-icon.is-liked{
+  outline: none;
+  border: none;
+}
+
+.like-icon.is-liked .core {
+  animation: core-coloring 0.3s linear;
+  animation-fill-mode: forwards;
+}
+
+.like-icon.is-liked .main-body {
+  animation: body-coloring 0.3s 0.5s linear;
+  animation-fill-mode: forwards;
+}
+
+.like-icon.is-liked .contour {
+  animation: contour-coloring 0.3s 0.5s linear;
+  animation-fill-mode: forwards;
+}
+
+.like-icon.is-liked .heart {
+  transform-origin: center;
+  animation: scale-heart 0.3s ease-in 1 alternate;
+}
+
+.like-icon.is-liked .sparks {
+  transform-origin: center;
+  animation: sparks-coloring 0.3s ease-in 1 reverse;
+  opacity: 1;
+}
+
+@keyframes core-coloring {
+  0% {
+    fill: transparent;
+  }
+
+  100% {
+    fill: var(--color-core, rgba(255, 0, 0, 1));
+  }
+}
+
+@keyframes body-coloring {
+  0% {
+    fill: transparent;
+  }
+
+  100% {
+    fill: var(--color-body, rgba(255, 0, 0, 1));
+  }
+}
+
+@keyframes contour-coloring {
+  0% {
+    fill: transparent;
+  }
+
+  100% {
+    fill: var(--color-contour, rgba(0, 0, 0, 1));
+  }
+}
+
+@keyframes scale-heart {
+  0% {
+    scale: 1;
+  }
+
+  100% {
+    scale: 1.5;
+  }
+}
+
+@keyframes sparks-coloring {
+  0% {
+    fill: transparent;
+  }
+
+  100% {
+    fill: var(--color-sparks, rgba(255, 0, 0, 1));
+  }
+}

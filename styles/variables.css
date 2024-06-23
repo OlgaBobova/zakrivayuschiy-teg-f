@@ -1,0 +1,27 @@
+/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root{
+    --mine-font: 'InInter-Variable';
+    --accent-font: 'Press Start 2P';
+    --mine-title-weight: 700;
+    --mine-text-weight: 400;
+    --accent-weight: 400;
+    --mine-color: rgba(0, 0, 0, 1);
+    --accent-color: rgba(0, 0, 0, 1);
+    --bg-color: rgba(255, 255, 255, 1);
+    --bg: repeating-linear-gradient(
+        to right,
+        #d3d3d3,
+        transparent 2px,
+        #d3d3d3 2px), repeating-linear-gradient(to bottom, #d3d3d3, transparent 2px, #d3d3d3 2px),
+        linear-gradient(#e7e7e7 0.01%, #1a1a1a 0.01%);
+    --desktop-size:1440px;
+    --mob-size: 375px;
+    --label-color:rgba(0, 0, 0, 1);
+    --label-border:rgba(255, 255, 255, 1);
+    --button-text: rgba(255, 255, 255, 1);
+    --color-contour:rgba(0, 0, 0, 1);
+    --color-core: rgba(255, 0, 0, 1);
+    --color-body:rgba(255, 0, 0, 1);
+    --color-sparks:rgba(255, 0, 0, 1);
+
+}

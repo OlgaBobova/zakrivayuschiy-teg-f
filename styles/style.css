@@ -1,0 +1,567 @@
+/* Здесь вы напишете основную часть стилей страницы.
+
+Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
+✦ theme-dark — класс тёмной темы
+✦ theme-light — класс светлой темы
+✦ like-icon — для svg-иконки анимированного сердца
+✦ card__like-button — для кнопки Like рядом с иконкой
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
+✦ button__text — для обозначения текстового элемента внутри кнопки
+
+Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
+
+*/
+
+.page {
+  min-inline-size: 320px;
+  min-block-size: 100dvb;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  font-family: var(--mine-font, "InInter-Variable"), sans-serif;
+  font-variation-settings: "whgt" var(--mine-text-weight, 400);
+  color: var(--mine-color, rgba(0, 0, 0, 1));
+  background-color: var(--bg-color, rgba(255, 255, 255, 1));
+  background: var(
+    --bg,
+    (
+      repeating-linear-gradient(
+        to right,
+        #d3d3d3,
+        transparent 2px,
+        #d3d3d3 2px
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        #d3d3d3,
+        transparent 2px,
+        #d3d3d3 2px
+      ),
+      linear-gradient(#e7e7e7 0.01%, #004306 0.01%)
+    )
+  );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  max-width: var(--desktop-size, 1440px);
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  padding: 100px calc(0.26 * 100%);
+}
+
+.header_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 700px;
+  max-height: 368px;
+  background-color: var(--bg-color, rgba(255, 255, 255, 1));
+  border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.header_title {
+  font-family: var(--accent-font, "Press Start 2P", sans-serif);
+  text-transform: uppercase;
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  color: var(--accent-color, rgba(0, 0, 0, 1));
+  font-weight: var(--accent-weight, 400);
+  padding: 136px 120px 20px;
+}
+
+.header_title_advice {
+  font-family: var(--accent-font, "Press Start 2P", sans-serif);
+  text-transform: uppercase;
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  color: var(--accent-color, rgba(0, 0, 0, 1));
+  padding-bottom: 25px;
+}
+
+.header__theme-menu {
+  padding-block-end: 25px;
+}
+
+.theme-menu__list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+  position: relative;
+}
+
+.theme-menu__item {
+  font-family: var(--accent-font, "Press Start 2P", sans-serif);
+  color: var(--accent-color, rgba(0, 0, 0, 1));
+  font-size: 14px;
+  line-height: 1;
+  font-weight: var(--mine-text-weight, 400);
+  padding-inline-start: 15px;
+}
+
+.theme-menu__button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition-timing-function: ease;
+  transition-duration: 0.3s;
+  outline: none;
+  border: none;
+}
+
+.theme-menu__button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  text-transform: uppercase;
+  position: relative;
+  text-decoration: none;
+  display: block;
+}
+
+.theme-menu__item:focus {
+  transition: none;
+  outline: none;
+  border: none;
+}
+
+.theme-menu__button::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  margin-top: 1px;
+  transition: width 0.3s, background-color 0.3s;
+}
+
+.theme-menu__button:focus::after {
+  width: 100%;
+  transition: scaleX(0) width 0.3s ease, background-color 0.3s ease;
+  background-color: var(--accent-color, rgba(0, 0, 0, 1));
+}
+
+.theme-menu__button:focus-visible:after {
+  width: 100%;
+  opacity: 0.6;
+  transition: scaleX(1) width 0.3s ease, background-color 0.3s ease;
+  background-color: var(--accent-color, rgba(0, 0, 0, 1));
+}
+
+.theme-menu__button::before {
+  content: " ";
+  opacity: 0.6;
+  display: inline;
+  transition-timing-function: ease;
+  pointer-events: none;
+  border: none;
+  outline: none;
+}
+
+.theme-menu__button:disabled::before {
+  content: "▶";
+  display: block;
+  margin-left: -20px;
+  opacity: 0.6;
+  display: inline;
+  pointer-events: none;
+  cursor: not-allowed;
+  position: absolute;
+  animation: loading 0.5s infinite ease-in-out alternate-reverse;
+}
+
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  transition-timing-function: ease;
+  transition-duration: 0.5s;
+  pointer-events: none;
+}
+
+@keyframes loading {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 4px;
+  }
+}
+
+.content {
+  max-width: var(--desktop-size, 1440px);
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 calc(0.25 * 100%) 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.heading {
+  font-family: var(--mine-font, "InInter-Variable"), sans-serif;
+  color: var(--mine-color, rgba(0, 0, 0, 1));
+  font-size: 18px;
+  font-weight: var(--mine-title-weight, 700);
+}
+
+.cards {
+  max-width: 696px;
+  min-height: 959px;
+  background-color: var(--bg-color, rgba(255, 255, 255, 1));
+  border: 2px solid rgba(0, 0, 0, 1);
+}
+
+.card_post {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card_title {
+  font-size: 18px;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+.card_image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  max-width: 696px;
+  min-height: 696px;
+  border-top: 2px solid rgba(0, 0, 0, 1);
+  border-bottom: 2px solid rgba(0, 0, 0, 1);
+}
+
+.lable {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 0;
+}
+
+.lable_text {
+  display: inline-block;
+  font-family: var(--accent-font, "Press Start 2P", sans-serif);
+  color: var(--label-color, rgba(0, 0, 0, 1));
+  text-shadow: 1px 1px 0 var(--label-border, rgba(255, 255, 255, 1)),
+    1px 1px 0 var(--label-border, rgba(255, 255, 255, 1)),
+    1px 1px 0 var(--label-border, rgba(255, 255, 255, 1));
+  opacity: 0.5;
+  mix-blend-mode: hard-light;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: var(--mine-text-weight, 400);
+  text-transform: uppercase;
+  position: absolute;
+  z-index: 1;
+  top: 25px;
+  right: 25px;
+}
+
+.card_text {
+  font-family: var(--mine-font, "InInter-Variable", sans-serif);
+  font-size: 18px;
+  padding: 27px 25px;
+  font-weight: var(--mine-text-weight, 400);
+}
+
+.card_place {
+  font-family: var(--mine-font, "InInter-Variable", sans-serif);
+  font-size: 18px;
+  padding: 27px 25px;
+  font-weight: var(--mine-text-weight, 400);
+  font-size: 18px;
+  padding: 0 25px;
+}
+
+.button_combo {
+  display: flex;
+  gap: 5px;
+  margin: 25px 25px 25px 492px;
+  position: relative;
+}
+
+.card__icon-button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  height: 44px;
+  width: 44px;
+  display: flex;
+  justify-items: center;
+}
+
+.card__icon-button:focus {
+  border: none;
+  outline: none;
+  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
+  transition: all 0.3s ease;
+}
+
+.card__icon-button:focus-visible {
+  border: none;
+  outline: none;
+  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
+  transition: all 0.3s ease;
+}
+
+.card__like-button {
+  outline: none;
+  background-color: transparent;
+  width: 130px;
+  height: 38px;
+  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
+  padding: 0 37px;
+}
+
+.floppy_icon {
+  mix-blend-mode: difference;
+  position: relative;
+  z-index: 2;
+  color: var(--button-text, rgba(255, 255, 255, 1));
+}
+
+.button__text {
+  background-color: transparent;
+  font-family: var(--accent-font, "Press Start 2P", sans-serif);
+  font-size: 14px;
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: difference;
+  color: var(--button-text, rgba(255, 255, 255, 1));
+}
+
+.button_animation {
+  position: relative;
+}
+
+.button_animation:focus {
+  border: none;
+  outline: none;
+  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
+  box-shadow: 2px 2px 0 var(--mine-color, rgba(0, 0, 0, 1));
+  transition: all 0.3s ease-out;
+}
+
+.button_animation:focus-visible {
+  border: none;
+  outline: none;
+  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
+  box-shadow: 2px 2px 0 var(--mine-color, rgba(0, 0, 0, 1));
+  transition: all 0.3s ease-out;
+}
+
+.button_animation::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  transform: scaleX(0);
+  margin-left: -19px;
+  height: 102%;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+}
+
+.button_animation.card__like-button::before {
+  margin-left: -37px;
+  margin-top: -6px;
+}
+
+.button_animation:hover::before {
+  cursor: pointer;
+  transform: scaleX(1);
+  width: 100%;
+  background-color: var(--mine-color, rgba(0, 0, 0, 1));
+}
+
+.footer {
+  max-width: var(--desktop-size, 1440px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  font-family: var(--accent-font, "Press Start 2P"), sans-serif;
+  font-size: 14px;
+  padding: 0 102px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer_button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 335px;
+  max-height: 55px;
+  background-color: var(--bg-color, rgba(255, 255, 255, 1));
+  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
+  mix-blend-mode: difference;
+  outline: none;
+  padding: 19px;
+  position: relative;
+  z-index: 0;
+}
+
+.floppy_icon {
+  width: 21px;
+  height: 21px;
+}
+
+.modal[open] {
+  color: var(--button-text, rgba(255, 255, 255, 1));
+  background-color: var(--bg-color, rgba(255, 255, 255, 1));
+  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
+  padding: 30px;
+}
+
+.modal:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 1, 0.75);
+}
+
+.modal__block {
+  max-width: 357px;
+  max-height: 193px;
+  display: grid;
+  grid-template-columns: 40px 234px;
+  grid-template-rows: 1fr min-content;
+  column-gap: 20px;
+  row-gap: 30px;
+}
+
+.modal__title {
+  font-family: var(--accent-font, "Press Start 2P"), sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 1.4;
+  font-weight: var(--accent-weight, 400);
+  color: var(--accent-color, rgba(0, 0, 0, 1));
+}
+
+.modal_button {
+  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
+  grid-column: span 2;
+}
+
+.modal_button_form {
+  text-transform: uppercase;
+  font-weight: var(--accent-weight, 400);
+  background-color: transparent;
+  padding: 12px;
+}
+
+.modal_floppy_icon {
+  margin-top: 12px;
+  fill: var(--accent-color, rgba(0, 0, 0, 1));
+  width: 39px;
+  height: 39px;
+}
+
+@media (width <= 375px) {
+  .header {
+    min-width: var(--mob-size, 375px);
+    padding: 100px 0;
+  }
+
+  .header_box {
+    min-width: var(--mob-size, 375px);
+    width: 100%;
+    min-height: 327px;
+  }
+
+  .header_title {
+    padding: 120px 14px 20px;
+  }
+
+  .header__theme-menu {
+    padding-block-end: 0;
+  }
+
+  .content {
+    max-width: var(--mob-size, 375px);
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .cards {
+    min-width: 375px;
+    min-height: 760px;
+    padding: 0;
+  }
+
+  .card_title {
+    max-width: 351px;
+    padding-top: 4px;
+    padding-bottom: 6px;
+  }
+
+  .lable_text {
+    right: 13px;
+  }
+
+  .card_text {
+    padding: 25px 27px;
+  }
+
+  .card_place {
+    padding: 6 27px;
+  }
+
+  .card_image {
+    max-width: 375px;
+    min-height: 375px;
+  }
+
+  .button_combo {
+    gap: 12px;
+    margin: 25px 25px 25px 177px;
+  }
+
+  .card__icon-button {
+    width: 27px;
+    height: 24px;
+  }
+
+  .footer {
+    padding: 52px 0 102px;
+  }
+
+  .footer_button {
+    flex-flow: column nowrap;
+    gap: 8px;
+    min-width: 306px;
+    min-height: 80px;
+    padding: 15px 20px;
+  }
+
+  .floppy_icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .modal__block {
+    max-width: 341px;
+    max-height: 191px;
+    grid-template-columns: 40px 198px;
+  }
+
+  .modal_floppy_icon {
+    margin-top: 12px;
+    fill: var(--accent-color, rgba(0, 0, 0, 1));
+    width: 39px;
+    height: 39px;
+  }
+}
