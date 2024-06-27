@@ -11,21 +11,13 @@
   --mine-color: rgba(0, 0, 0, 1);
   --accent-color: rgba(0, 0, 0, 1);
   --bg-color: rgba(255, 255, 255, 1);
-  --bg: repeating-linear-gradient(
-      to right,
-      #d3d3d3,
-      transparent 2px,
-      #d3d3d3 2px
-    ),
-    repeating-linear-gradient(to bottom, #d3d3d3, transparent 2px, #d3d3d3 2px),
-    linear-gradient(#e7e7e7 0.01%, #1a1a1a 0.01%);
+  --bg: repeating-linear-gradient(to right, #d3d3d3 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(to bottom, #d3d3d3 0 2px, transparent 2px 4px),
+    linear-gradient(to bottom, #e7e7e7 0%, #e7e7e7 0.01%, #1a1a1a 100%);
   --label-color: rgba(0, 0, 0, 1);
   --label-border: rgba(255, 255, 255, 1);
   --button-text: rgba(255, 255, 255, 1);
   --color-contour: rgba(0, 0, 0, 1);
-  --color-core: rgba(255, 0, 0, 1);
-  --color-body: rgba(255, 0, 0, 1);
-  --color-sparks: rgba(255, 0, 0, 1);
 }
 
 .theme-dark {
@@ -34,16 +26,13 @@
   --mine-color: rgba(0, 204, 20, 1);
   --accent-color: rgba(0, 204, 20, 1);
   --bg-color: rgba(0, 0, 0, 1);
-  --bg: repeating-linear-gradient(to right, #000, transparent 2px, #000 2px),
-    repeating-linear-gradient(to bottom, #000, transparent 2px, #000 2px),
-    linear-gradient(#007f0c, #004306);
+  --bg: repeating-linear-gradient(to right, #000 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(to bottom, #000 0 2px, transparent 2px 4px),
+    linear-gradient(to bottom, #007f0c 0%, #004306 100%);
   --label-color: rgba(0, 204, 20, 1);
   --label-border: rgba(0, 0, 0, 1);
   --button-text: rgba(0, 204, 20, 1);
-  --color-contour: rgba(0, 0, 0, 1);
-  --color-core: rgba(0, 0, 0, 1);
-  --color-body: rgba(0, 0, 0, 1);
-  --color-sparks: rgba(255, 0, 0, 1);
+  --color-contour: rgba(0, 204, 20, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,15 +42,12 @@
     --mine-color: rgba(0, 204, 20, 1);
     --accent-color: rgba(0, 204, 20, 1);
     --bg-color: rgba(0, 0, 0, 1);
-    --bg: repeating-linear-gradient(to right, #000, transparent 2px, #000 2px),
-      repeating-linear-gradient(to bottom, #000, transparent 2px, #000 2px),
-      linear-gradient(#007f0c, #004306);
+    --bg: repeating-linear-gradient(to right, #000 0 2px, transparent 2px 4px),
+      repeating-linear-gradient(to bottom, #000 0 2px, transparent 2px 4px),
+      linear-gradient(to bottom, #007f0c 0%, #004306 100%);
     --label-color: rgba(0, 204, 20, 1);
     --label-border: rgba(0, 0, 0, 1);
     --button-text: rgba(0, 204, 20, 1);
     --color-contour: rgba(0, 204, 20, 1);
-    --color-core: rgba(0, 0, 0, 1);
-    --color-body: rgba(0, 0, 0, 1);
-    --color-sparks: rgba(255, 0, 0, 1);
   }
 }
