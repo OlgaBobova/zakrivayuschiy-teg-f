@@ -18,7 +18,7 @@
   min-inline-size: 320px;
   min-block-size: 100dvb;
   font-family: var(--mine-font, "Inter"), sans-serif;
-  font-variation-settings: "whgt" var(--mine-text-weight, 400);
+  font-variation-settings: "wght" var(--mine-text-weight, 400);
   color: var(--mine-color, rgba(0, 0, 0, 1));
   background-color: var(--bg-color, rgba(255, 255, 255, 1));
   background: var(
@@ -144,17 +144,17 @@
 
 .heading {
   font-family: var(--mine-font, "Inter"), sans-serif;
-  font-variation-settings: "whgt" var(--mine-title-weight, 700);
   color: var(--mine-color, rgba(0, 0, 0, 1));
 }
 
 .cards {
   display: grid;
   row-gap: 50px;
-  max-inline-size: 696px;
+  max-inline-size: 700px;
 }
 
 .card_post {
+  font-variation-settings: "wght" var(--mine-text-weight, 400);
   display: flex;
   flex-direction: column;
   border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
@@ -162,6 +162,7 @@
 }
 
 .card_title {
+  font-variation-settings: "wght" var(--mine-title-weight, 700);
   font-size: 18px;
   padding-top: 3px;
   padding-left: 1%;
@@ -171,10 +172,11 @@
 .card_image {
   display: block;
   width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   max-width: 696px;
-  min-height: 696px;
+  max-height: 696px;
   border-top: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
   border-bottom: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
 }
@@ -254,7 +256,7 @@
   font-weight: var(--mine-text-weight, 400);
   font-size: 18px;
   line-height: 1.2;
-  padding: 27px 25px 25px;
+  padding: 27px 25px 0;
 }
 
 .button_combo {
@@ -269,6 +271,8 @@
 }
 
 .card__icon-button {
+  display: flex;
+  align-items: center;
   cursor: pointer;
   border: none;
   outline: none;
@@ -300,7 +304,6 @@
   font-size: 14px;
   mix-blend-mode: difference;
   color: var(--button-text, rgba(255, 255, 255, 1));
-  transition: mix-blend-mode 0.5s;
 }
 
 .button_animation {
@@ -346,39 +349,52 @@
 
 .heart:active .core {
   fill: rgba(255, 0, 0, 1);
+  transition-delay: 0s;
 }
 
 .heart:active .main-body {
   fill: rgba(255, 0, 0, 1);
+  transition-delay: 0.05s;
+}
+
+.like-icon .contour {
+  transition: fill 0.01s linear;
 }
 
 .like-icon.is-liked .contour {
-  transition: fill 0.06s;
-}
-
-.contour {
-  transition: fill 0.01s linear;
+  fill: rgba(255, 0, 0, 1);
+  transition: fill 0.3s linear 0.06s;
 }
 
 .like-icon.is-liked .heart path {
   fill: rgba(255, 0, 0, 1);
-  animation: scale-heart 0.3s 0.1s ease-in;
+  animation: scale-heart 0.3s 0.1s alternate;
   transform-origin: 50%;
 }
 
 .like-icon.is-liked .sparks {
   fill: none;
-  animation: heart-sparks 0.3s 0.3s ease-in;
+  animation: heart-sparks 0.3s 0.3s alternate;
 }
 
-.main-body {
+.like-icon .main-body {
   fill: transparent;
-  transition: fill 0.3s 0s linear;
+  transition: fill 0.3s linear;
 }
 
-.core {
+.like-icon.is-liked .main-body {
+  fill: rgba(255, 0, 0, 1);
+  transition-delay: 0.05s;
+}
+
+.like-icon .core {
   fill: transparent;
   transition: fill 0.3s 0.03s linear;
+}
+
+.like-icon.is-liked .core {
+  fill: rgba(255, 0, 0, 1);
+  transition-delay: 0;
 }
 
 .floppy_icon {
@@ -416,6 +432,7 @@
   background-color: var(--bg-color, rgba(255, 255, 255, 1));
   border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
   padding: 30px;
+  margin: auto;
 }
 
 .modal:not([open]) {
@@ -428,11 +445,14 @@
 }
 
 .modal__block {
-  max-width: 357px;
-  max-height: 193px;
+  max-width: 353px;
+  max-height: 191px;
   display: grid;
   grid-template-columns: 40px 234px;
   grid-template-rows: 1fr min-content;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
   column-gap: 20px;
   row-gap: 30px;
 }
@@ -454,18 +474,13 @@
 }
 
 .modal_button_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-transform: uppercase;
   font-weight: var(--accent-weight, 400);
-  padding: 12px;
   border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
-}
-
-.modal_button :focus {
-  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
-}
-
-.modal_button :focus-visible {
-  border: 2px solid var(--mine-color, rgba(0, 0, 0, 1));
+  height: 38px;
 }
 
 .modal_floppy_icon {
@@ -475,7 +490,7 @@
   aspect-ratio: 1/1;
 }
 
-@media (width <= 380px) {
+@media (width <= 375px) {
   .header {
     min-inline-size: var(--mob-size, 375px);
   }
@@ -534,13 +549,12 @@
   .modal[open] {
     display: flex;
     justify-content: center;
-    overflow: hidden;
-    padding: 30px 42px;
+    padding: 30px 25чpx;
   }
 
   .modal__block {
-    max-width: 341px;
-    grid-template-columns: 39px 198px;
+    grid-template-columns: 39px 197px;
+    margin: auto;
   }
 
   .modal_button_form {

@@ -5,7 +5,7 @@
 ✦ не забудьте описать стили для изменения темы через медизапрос пользовательских предпочтений
 */
 
-.theme-light {
+:root.theme-light {
   --mine-title-weight: 700;
   --mine-text-weight: 400;
   --mine-color: rgba(0, 0, 0, 1);
@@ -20,7 +20,7 @@
   --color-contour: rgba(0, 0, 0, 1);
 }
 
-.theme-dark {
+:root.theme-dark {
   --mine-title-weight: 785;
   --mine-text-weight: 465;
   --mine-color: rgba(0, 204, 20, 1);
@@ -36,7 +36,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .theme-dark {
+  :root {
     --mine-title-weight: 785;
     --mine-text-weight: 465;
     --mine-color: rgba(0, 204, 20, 1);
